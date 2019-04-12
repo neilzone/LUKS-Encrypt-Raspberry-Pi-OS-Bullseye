@@ -48,7 +48,8 @@ In the initramfs shell run the following commands:
 `mkdir /tmp/boot`  
 `mount /dev/mmcblk0p1 /tmp/boot/`  
 `/tmp/boot/install/3.disk_encrypt_initramfs.sh`  
-The script copies all your data to the flash drive because Luks deletes everything when it's encrypting the partition.  
+The script above copies all your data to the flash drive because Luks deletes everything when it's encrypting the partition.  
+
 When luks encrypts the root partition it will ask you to type `YES` (in uppercase) then the decryption password twice.   
 **watch out if you used CAPS LOCK to type the YES**  
 So add a new **strong** password to your liking.  
