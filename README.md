@@ -8,12 +8,12 @@ The directions are reproduced below and modified to address a www.privatekeyvaul
 
 ### Directions:  
 The tutorials styper referenced are the following:  
-* [This is where it all started](https://robpol86.com/raspberry_pi_luks.html)  
+* [It all started with robpo](https://robpol86.com/raspberry_pi_luks.html)  
   * robpo figured out a way to encrypte an SD card using only the raspberry pi whereas before you had to stick your SD card into another type of computer in order to accomplish the job.  
   * Using only the pi for encryption reduces the chances of picking up a malware infection.  
   * And now poor people who only have a raspberry pi have access to full disk encryption.  
 * [My tutorial](https://github.com/johnshearing/PrivateKeyVault#setup-luks-full-disk-encryption) made from robpo's was I hope easier to follow and focused toward the PrivateKeyVault.  
-Both these tutorials were for Raspbian Jessie and would not work on Stretch.  
+* Both these tutorials were for Raspbian Jessie and would not work on Stretch.  
 
 
 What you need:  
