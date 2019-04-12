@@ -37,11 +37,11 @@ Execute the following command at the bash console:
 `sudo reboot`  
 This is needed so the system loads the new kernel version.  
 
-Run script: `/boot/install/2.disk_encrypt.sh`
+Run script: `/boot/install/2.disk_encrypt.sh`  
 This prepares the environment adding new applications to initramfs to make the job easier and prepares the needed files for Luks
 
 Execute the following command at the bash console:  
-`sudo reboot`
+`sudo reboot`  
 Now we're going to be dropped to the initramfs shell, this is normal
 
 In the initramfs shell run the following commands:  
@@ -52,7 +52,7 @@ The script copies all your data to the flash drive because Luks deletes everythi
 When luks encrypts the root partition it will ask you to type `YES` (in uppercase) then the decryption password twice.   
 **watch out if you used CAPS LOCK to type the YES**  
 So add a new **strong** password to your liking.  
-Then Luks will ask for the decryption password again so we can copy the data back from the flash drive to the root partition
+Then Luks will ask for the decryption password again so we can copy the data back from the flash drive to the root partition.  
 
 Execute the following command at the bash console:  
 `reboot -f`  
