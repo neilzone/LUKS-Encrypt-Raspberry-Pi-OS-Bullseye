@@ -14,7 +14,7 @@ The tutorials styper referenced are the following:
   * And now poor people who only have a raspberry pi have access to full disk encryption.  
 * [My tutorial](https://github.com/johnshearing/PrivateKeyVault#setup-luks-full-disk-encryption) made from robpo's was I hope easier to follow and focused toward the PrivateKeyVault.  
 
-Both these tutorials were for Raspbian Jessie and would not work on Stretch. 
+Both these tutorials were for Raspbian Jessie and would not work on Stretch.  
 It appears styper has solved that problem. I can't wait to try it.  
 
 
