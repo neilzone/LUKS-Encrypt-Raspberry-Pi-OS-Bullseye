@@ -71,5 +71,5 @@ Run script: `/boot/install/5.rebuild_initram.sh`
 There it is, once you reboot it will ask for the decrypt password again every time now.  
 
 Some notes:  
-There is probably an easier way to do this using chroot so you don't need to reboot so much but I don't know how to do it yet.  
-I added expect to the initramfs hook because I'll probably add another script to auto generate a strong password, it can be removed though.  
+* There is probably an easier way to do this using chroot so you don't need to reboot so much but I don't know how to do it yet.  
+* I added expect to the initramfs hook because I'll probably add another script to auto generate a strong password, it can be removed though.  
