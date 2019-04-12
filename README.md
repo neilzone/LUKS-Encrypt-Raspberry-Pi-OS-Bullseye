@@ -29,7 +29,7 @@ Burn the Raspbian Stretch image to the SD Card using Etcher or a similiar tool
 Download the scripts from the repo and place them inside `/boot/install/`    
 
 Run script: `sudo /boot/install/1.update.sh`  
-What this does is update the system. In styper's first try there was a bug with a kernel version that was sending the system into a kernel panic during the process. He/she reports that didn't happened when he/she updated to 4.14.  
+What this does is update the system. In styper's first try there was a bug with a kernel version that was sending the system into a kernel panic during the process. styper reports that didn't happened when he/she updated to 4.14.  
 
 Execute the following command at the bash console:  
 `sudo reboot`  
