@@ -19,12 +19,12 @@ The tutorials styper referenced are the following:
 What you need:  
 Styper calls for a Raspberry PI 3 but a regular PI 3 can not be used in the PrivateKeyVault because the vault is airgapped whereas the PI 3 is WiFi and Bluetooth enabled. The PI 2 does not have any radios on board which is why I use it in the Vault. In a future build of the Vault I would like to use the Raspberry Pi Compute Module 3+/Lite which has the fast processor of the PI 3 without the radios. In any case, I can't imagine why styper's scripts wouldn't work on a PI 2. I will report back here.  
 
-An sdcard with Raspbian Stretch installed (styper used the lite edition in tests)  
+An SD card with Raspbian Stretch installed (styper used the lite edition in tests)  
 A flash drive connected to the RPI (needed to copy the data from root partition during encrypt so you don't lose it)  
 
 This tutorial should be usable with an already running Raspbian Stretch, just skip the burning iso/img part  
 
-Burn the Raspbian Stretch image to the SDCard using Etcher or a similiar tool  
+Burn the Raspbian Stretch image to the SD Card using Etcher or a similiar tool  
 
 Download the scripts from the repo and place them inside `/boot/install/`    
 
