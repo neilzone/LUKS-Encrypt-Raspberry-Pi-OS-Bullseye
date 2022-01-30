@@ -1,31 +1,51 @@
-# Luks-Encrypt-Raspbian-Stretch
+# LUKS-Encrypt-Raspberry-Pi-OS-Bullseye
 
-An SD card with Raspbian Stretch installed (styper used the lite edition in tests)  
-A flash drive connected to the RPI (needed to copy the data from root partition during encrypt so you don't lose it)  
+(Testing using Raspberry PI OS, running on a Raspberry Pi 4.)
 
-This tutorial should be usable with an already running Raspbian Stretch, just skip the burning iso/img part  
+## Preparations
 
-Burn the Raspbian Stretch image to the SD Card using Etcher or a similiar tool
+You'll need:
+
+- a Raspberry Pi
+- a microSD card with the Raspberry Pi OS imaged to it (e.g. via `dd` or Etcher)
+- a flash drive of at least the same size as the microSD card. This will be wiped as part of the process 
+
 
 # 1: Update your Raspberry Pi
 
-Download the scripts from the repo and place them inside `/boot/install/`    
+Create `/boot/install`:
+
+```
+sudo mkdir -p /boot/install
+```
+
+Download the scripts to `/boot/install/`:
+
+```
+sudo apt install git -y
+git clone https://github.com/neilzone/LUKS-Encrypt-Raspberry-Pi-OS-Bullseye /boot/install/
+```
 
 Run script: `sudo /boot/install/1.update.sh`  
-What this does is update the system. In styper's first try there was a bug with a kernel version that was sending the system into a kernel panic during the process. styper reports that didn't happened when he/she updated to 4.14.  
 
-Execute the following command at the bash console:  
+This updates your Raspberry Pi OS installation.
+
+When it is finished, execute the following command at the bash console:  
 `sudo reboot`  
-This is needed so the system loads the new kernel version.  
+This is needed so the system reboots and loads the new kernel version.  
 
 # 2: Prepare for disk encryption
 
-Run script: `/boot/install/2.disk_encrypt.sh`  
-This prepares the environment adding new applications to initramfs to make the job easier and prepares the needed files for Luks
+Log back into your Raspberry Pi, and run script: `/boot/install/2.disk_encrypt.sh`  
+This prepares the environment adding new applications to initramfs to make the job easier and prepares the needed files for LUKS.
 
-Execute the following command at the bash console:  
+When it is finished, plug in your USB flash drive.
+
+Then, execute the following command at the bash console:  
 `sudo reboot`  
-Now we're going to be dropped to the initramfs shell, this is normal
+
+
+When your Raspberry Pi reboots, it will reboot into the initramfs shell. This may take a while.
 
 # 3: Start the encryption process
 
@@ -33,34 +53,48 @@ In the initramfs shell run the following commands:
 `mkdir /tmp/boot`  
 `mount /dev/mmcblk0p1 /tmp/boot/`  
 `/tmp/boot/install/3.disk_encrypt_initramfs.sh`  
-The script above copies all your data to the flash drive because Luks deletes everything when it's encrypting the partition.  
 
-When luks encrypts the root partition it will ask you to type `YES` (in uppercase) then the decryption password twice.   
-**watch out if you used CAPS LOCK to type the YES**  
-So add a new **strong** password to your liking.  
-Then Luks will ask for the decryption password again so we can copy the data back from the flash drive to the root partition.  
+This copies your microSD card to your flash drive. This is because the LUKS encryption process deletes everything when it is encrypting the partition. When the process is completed, the script will copy it back again to the microSD card.
 
-Execute the following command at the bash console:  
+Be patient: this can take a long time.
+
+When LUKS encrypts the root partition it will ask you to type `YES` (in uppercase). You **must** use uppercase.
+
+You will be asked to choose a decryption password, and enter it twice.   
+
+It will then encrypt your microSD card.
+
+When finished, LUKS will ask for the decryption password again. It unlocks the microSD card, and then copies back the data from the microSD card.
+
+When finished, remove your USB flash drive.
+
+Then, execute the following command at the bash console:  
 `reboot -f`  
-We're dropped again to the initramfs, this is still normal
+
+
+As before, it will boot into the initramfs shell. This is because it cannot unlock your microSD card's encrypted partition, to boot Raspberry Pi OS.
 
 # 4: Unlock the drive to boot into Raspberry Pi OS
 
-Execute the following commands at the bash console:  
+Execute the following commands at the initramfs shell:  
 `mkdir /tmp/boot`  
 `mount /dev/mmcblk0p1 /tmp/boot/`  
 `/tmp/boot/install/4.luks_open.sh`   
 
 Type in your decryption password again.
 
-When it drops back to the initramfs prompt, type `exit`. The system should resume booting as normal, at this point all the data is encrypted already, we just need to rebuild the initramfs.  
+When it drops back to the initramfs prompt, type `exit`. 
+
+The system should resume booting, and will boot into Raspberry Pi OS.
 
 # 5: Configure so you do not need to boot into initramfs each time
 
 Run script: `/boot/install/5.rebuild_initram.sh`  
 
-There it is, once you reboot it will ask for the decrypt password again every time now.  
+This step means you do not need to boot first into initramfs and unlock the drive, before it continues to boot.
 
-Some notes:  
-* There is probably an easier way to do this using chroot so you don't need to reboot so much but I don't know how to do it yet.  
-* I added expect to the initramfs hook because I'll probably add another script to auto generate a strong password, it can be removed though.  
+# 6: configure unlocking over SSH
+
+Because you have used LUKS, you need to enter your passphrase to reboot your Raspberry Pi.
+
+You can [enable remote unlocking of the microSD card over SSH](https://neilzone.co.uk/2021/06/unlocking-a-luks-encrypted-partition-via-ssh-on-debian-10), before it boots into Raspberry Pi OS.
