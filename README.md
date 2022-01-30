@@ -1,25 +1,4 @@
 # Luks-Encrypt-Raspbian-Stretch
-Scripts to luks encrypt the root partition of a Raspbian installation  
-Thank you styper.  
-I have not tried this yet nor have I looked at the scripts but I am very excited because this should allow the use of Stretch with LUKs Full Disk Encryption whereas before we were limited to staying with Jessie.  
-I will report back here after trying this on Stretch.  
-[Directions by styper were found here](https://www.raspberrypi.org/forums/viewtopic.php?t=219867)  
-The directions are reproduced below and modified to address a www.privatekeyvault.com specific installation.  
-
-### Directions:  
-The tutorials styper referenced are the following:  
-* [It all started with robpo](https://robpol86.com/raspberry_pi_luks.html)  
-  * robpo figured out a way to encrypte an SD card using only the raspberry pi whereas before you had to stick your SD card into another type of computer in order to accomplish the job.  
-  * Using only the pi for encryption reduces the chances of picking up a malware infection.  
-  * And now poor people who only have a raspberry pi have access to full disk encryption.  
-* [My tutorial](https://github.com/johnshearing/PrivateKeyVault#setup-luks-full-disk-encryption) made from robpo's was I hope easier to follow and focused toward the PrivateKeyVault.  
-
-Both these tutorials were for Raspbian Jessie and would not work on Stretch.  
-It appears styper has solved that problem. I can't wait to try it.  
-
-
-What you need:  
-Styper calls for a Raspberry PI 3 but a regular PI 3 can not be used in the PrivateKeyVault because the vault is airgapped whereas the PI 3 is WiFi and Bluetooth enabled. The PI 2 does not have any radios on board which is why I use it in the Vault. In a future build of the Vault I would like to use the Raspberry Pi Compute Module 3+/Lite which has the fast processor of the PI 3 without the radios. In any case, I can't imagine why styper's scripts wouldn't work on a PI 2. I will report back here.  
 
 An SD card with Raspbian Stretch installed (styper used the lite edition in tests)  
 A flash drive connected to the RPI (needed to copy the data from root partition during encrypt so you don't lose it)  
