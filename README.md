@@ -97,4 +97,4 @@ This step means you do not need to boot first into initramfs and unlock the driv
 
 Because you have used LUKS, you need to enter your passphrase to reboot your Raspberry Pi.
 
-You can [enable remote unlocking of the microSD card over SSH](https://neilzone.co.uk/2021/06/unlocking-a-luks-encrypted-partition-via-ssh-on-debian-10), before it boots into Raspberry Pi OS.
+You can [enable remote unlocking of the microSD card over SSH](https://neilzone.co.uk/2021/07/raspberry-pi-4-with-the-poe-hat-luks-and-a-working-fan), before it boots into Raspberry Pi OS.
