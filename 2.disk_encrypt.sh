@@ -8,7 +8,7 @@ if [ "$(id -u)" != "0" ]; then
    exit 1
 fi
 
-apt-get install busybox cryptsetup initramfs-tools e2fsprogs -y
+apt-get install busybox cryptsetup initramfs-tools -y
 apt-get install expect --no-install-recommends -y
 cp /boot/install/initramfs-rebuild /etc/kernel/postinst.d/initramfs-rebuild
 cp /boot/install/resize2fs /etc/initramfs-tools/hooks/resize2fs
