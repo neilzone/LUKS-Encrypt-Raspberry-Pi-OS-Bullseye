@@ -51,7 +51,9 @@ Execute the following commands at the bash console:
 `mount /dev/mmcblk0p1 /tmp/boot/`  
 `/tmp/boot/install/4.luks_open.sh`   
 
-Type in your decryption password again, then the system should resume booting as normal, at this point all the data is encrypted already, we just need to rebuild the initramfs.  
+Type in your decryption password again.
+
+When it drops back to the initramfs prompt, type `exit`. The system should resume booting as normal, at this point all the data is encrypted already, we just need to rebuild the initramfs.  
 
 # 5: Configure so you do not need to boot into initramfs each time
 
