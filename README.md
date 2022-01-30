@@ -5,7 +5,9 @@ A flash drive connected to the RPI (needed to copy the data from root partition 
 
 This tutorial should be usable with an already running Raspbian Stretch, just skip the burning iso/img part  
 
-Burn the Raspbian Stretch image to the SD Card using Etcher or a similiar tool  
+Burn the Raspbian Stretch image to the SD Card using Etcher or a similiar tool
+
+# 1: Update your Raspberry Pi
 
 Download the scripts from the repo and place them inside `/boot/install/`    
 
@@ -16,12 +18,16 @@ Execute the following command at the bash console:
 `sudo reboot`  
 This is needed so the system loads the new kernel version.  
 
+# 2: Prepare for disk encryption
+
 Run script: `/boot/install/2.disk_encrypt.sh`  
 This prepares the environment adding new applications to initramfs to make the job easier and prepares the needed files for Luks
 
 Execute the following command at the bash console:  
 `sudo reboot`  
 Now we're going to be dropped to the initramfs shell, this is normal
+
+# 3: Start the encryption process
 
 In the initramfs shell run the following commands:  
 `mkdir /tmp/boot`  
@@ -36,7 +42,9 @@ Then Luks will ask for the decryption password again so we can copy the data bac
 
 Execute the following command at the bash console:  
 `reboot -f`  
-We're dropped again to the initramfs, this is still normal  
+We're dropped again to the initramfs, this is still normal
+
+# 4: Unlock the drive to boot into Raspberry Pi OS
 
 Execute the following commands at the bash console:  
 `mkdir /tmp/boot`  
@@ -44,6 +52,8 @@ Execute the following commands at the bash console:
 `/tmp/boot/install/4.luks_open.sh`   
 
 Type in your decryption password again, then the system should resume booting as normal, at this point all the data is encrypted already, we just need to rebuild the initramfs.  
+
+# 5: Configure so you do not need to boot into initramfs each time
 
 Run script: `/boot/install/5.rebuild_initram.sh`  
 
