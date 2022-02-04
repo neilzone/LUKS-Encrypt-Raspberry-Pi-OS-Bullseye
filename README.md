@@ -26,7 +26,7 @@ sudo apt install git -y
 git clone https://github.com/neilzone/LUKS-Encrypt-Raspberry-Pi-OS-Bullseye /boot/install/
 ```
 
-Run script: `sudo /boot/install/1.update.sh`  
+Run script: `sudo bash /boot/install/1.update.sh`  
 
 This updates your Raspberry Pi OS installation.
 
